@@ -1,14 +1,19 @@
-import React from 'react';
+import React,{useEffect, useContext} from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import './App.css';
 import Header from './components/Header';
 import Home from './components/Home';
+import Login from './components/Login';
+import Register from './components/Register';
 import Checkout from './components/Checkout';
 import {StateProvider} from './context/StateProvider';
 import reducer,{initialState} from './context/StateReducer';
+import AuthState from './context/AuthState/authState';
+
 function App() {
-  return (
+ return (
     <Router>
+      <AuthState>
       <StateProvider initialState={initialState} reducer={reducer}>
     <div className="App">
       <Switch>
@@ -17,7 +22,10 @@ function App() {
           <Checkout />
         </Route>
         <Route  path="/login">
-          <h1>login</h1>
+	    <Login />
+	</Route>
+       <Route  path="/register">
+	    <Register />
         </Route>
         <Route  path="/">
           <Header />
@@ -26,6 +34,7 @@ function App() {
       </Switch>
    </div>
     </StateProvider>
+    </AuthState>
   </Router>
   );
 }

@@ -1,7 +1,25 @@
-import React from 'react';
+import React,{useContext, useEffect} from 'react';
 import "../styles/Home.css";
 import Product from './Product';
+import {auth} from '../firebase/firebase';
+import AuthContext from '../context/AuthState/authContext';
+import AuthState from '../context/AuthState/authState';
 const Home = () => {
+  const context = useContext(AuthContext);
+  const {obtenerUsuario, usuarioOut} = context;
+
+  useEffect(()=>{
+    auth.onAuthStateChanged(user =>{
+      console.log(user);
+
+      if(user){
+	obtenerUsuario(user);
+      }else{
+	usuarioOut();
+      }
+    })
+  },[])
+ 
     return (
       
         <div className="home">

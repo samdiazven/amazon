@@ -1,10 +1,16 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import '../styles/SubTotal.css'
 import CurrencyFormat from 'react-currency-format';
 import {useStateValue} from '../context/StateProvider';
 
 const SubTotal = ()=> {
-	const [{basket, subtotal}] = useStateValue();
+	const [{basket, subtotal}, dispatch] = useStateValue();
+
+	useEffect(()=>{
+		dispatch({
+			type: 'ACTUALIZAR_SUBTOTAL'
+		})
+	},[basket])
 		
 	return(
 			<div className="subtotal">

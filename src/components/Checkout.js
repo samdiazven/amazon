@@ -6,13 +6,11 @@ import SubTotal from './subTotal';
 
 const Checkout = () => {
     const [{basket}, dispatch] = useStateValue();
-    const [carrito, setCarrito] = useState([]);
 
     useEffect(()=>{
         dispatch({
             type: 'ACTUALIZAR_SUBTOTAL'
         })
-        setCarrito(basket);
     },[basket]);
     return ( 
         <div className="checkout">
@@ -22,7 +20,7 @@ const Checkout = () => {
             src="https://images-na.ssl-images-amazon.com/images/G/01/credit/img16/CCMP/newstorefront/YACC-desktop-nonprime-banner2.jpg"
             alt=""
             />
-            {carrito.length === 0 ?(
+            {basket.length === 0 ?(
                 <div className="checkout__empty">
                     <h1>Su carrito se encuentra vacio!</h1>
                     <p>Por favor escoja al menos un producto para poder visualizar su compra</p>
@@ -31,7 +29,7 @@ const Checkout = () => {
                 <div>
                     <h2 className="checkout_title">Tu Carrito de Compras</h2>
 
-                    {carrito.map(item => (
+                    {basket.map(item => (
                         <CheckoutProduct
                             id={item.id}
                             title={item.title}
@@ -44,7 +42,7 @@ const Checkout = () => {
                 </div>
             )}
             </div>
-            {carrito.length !==0 &&(
+            {basket.length !==0 &&(
                 <SubTotal /> 
                 )}
         </div>

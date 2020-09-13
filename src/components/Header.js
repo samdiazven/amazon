@@ -1,11 +1,21 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import '../styles/Header.css';
-import {Link} from 'react-router-dom';
+import {Link, Router} from 'react-router-dom';
+import {auth} from '../firebase/firebase';
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import  {useStateValue} from '../context/StateProvider';
+import AuthContext from '../context/AuthState/authContext';
 const Header = () => {
+    const authcontext = useContext(AuthContext);
+    const {usuario} = authcontext;
     const [{basket}] = useStateValue();
+
+    const handleAuthentication = () =>{
+      if(usuario){
+	auth.signOut();
+      }
+    }
     return (
         <nav className="header">
             {/* Logo a la izquierda -> img*/}
@@ -22,10 +32,10 @@ const Header = () => {
             {/*------------ 3 Botones------------------*/}
             <div className="header__options">
                 {/*1st options*/}
-                  <Link to="/" className="header__link">
-                   <div className="header__option">
-                    <span className="header__optionOne">Hello</span>
-                    <span className="header__optionTwo">Sign in</span>
+                  <Link to={usuario ? '/' : '/login'} className="header__link">
+                   <div onClick={handleAuthentication} className="header__option">
+                    <span className="header__optionOne">{usuario ? `Hola ${usuario.displayName}` : 'Hola Invitado'}</span>
+                    <span className="header__optionTwo">{usuario  ? 'Sign Out'  : 'Sign in'}</span>
                    </div>
                   </Link> 
                 {/*2nd options*/}
@@ -47,7 +57,7 @@ const Header = () => {
             {/* Carrito con el numero de items*/}
                 <Link to="/checkout" className="header__link">
                 <div className="header__carShopping">
-                    <ShoppingBasketIcon className="" />
+                    <ShoppingBasketIcon />
                    <span className="header__optionTwo header__basketCount">{basket?.length}</span>
                 </div>
                 </Link>
