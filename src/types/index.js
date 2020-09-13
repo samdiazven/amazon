@@ -1,3 +1,4 @@
 export const OBTENER_USUARIO = 'OBTENER_USUARIO';
 export const OUT_USUARIO = 'OUT_USUARIO';
 export const CREATE_USER = 'CREATE_USER';
+export const PRODUCT_INFO = 'PRODUCT_INFO';

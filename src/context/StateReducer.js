@@ -1,7 +1,8 @@
 export const initialState = {
     basket: [],
     subtotal: 0,
-    user: null
+    user: null,
+    productinfo: null
 };
 
     const reducer = (state=initialState, action) =>{
@@ -33,6 +34,11 @@ export const initialState = {
                     basket: [...state.basket.filter(p =>(p.id !== action.payload))]
 
                 }  
+	  case 'PRODUCT_INFO':
+	    return {
+		...state,
+		productinfo: state.basket.find(product => product.id === action.payload )
+	    }
              default:
                  return state;
         }

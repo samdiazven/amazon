@@ -9,6 +9,7 @@ import Checkout from './components/Checkout';
 import {StateProvider} from './context/StateProvider';
 import reducer,{initialState} from './context/StateReducer';
 import AuthState from './context/AuthState/authState';
+import Search from './components/Search';
 
 function App() {
  return (
@@ -27,10 +28,15 @@ function App() {
        <Route  path="/register">
 	    <Register />
         </Route>
-        <Route  path="/">
+	<Route path="/search/:q">
+	  <Header />
+	  <Search />
+	  </Route>  
+	  <Route  path="/">
           <Header />
           <Home />
         </Route>
+      
       </Switch>
    </div>
     </StateProvider>

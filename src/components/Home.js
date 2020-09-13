@@ -30,7 +30,7 @@ const Home = () => {
             />
             <div className="home__row">
          <Product 
-            id={123}
+            id={200}
             title="La forma de aprender components"
             price={11.25}
             rating={5}

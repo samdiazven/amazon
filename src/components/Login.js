@@ -7,6 +7,7 @@ const Login = ()=>{
   const [password, setPassword] = useState('');
   const history = useHistory();
   const onRegister = e =>{
+    e.preventDefault();
       history.push('/register')
  } 
   const onSignIn = e=>{
@@ -15,7 +16,7 @@ const Login = ()=>{
       auth.signInWithEmailAndPassword(email, password).
       then(auth=>{
 	history.push('/');
-      }).catch(error => alert(error.message))
+      }).catch(error => alert(error.message));
   }
 
   return(

@@ -1,6 +1,6 @@
-import React,{useContext} from 'react';
+import React,{useContext,useState} from 'react';
 import '../styles/Header.css';
-import {Link, Router} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import {auth} from '../firebase/firebase';
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
@@ -10,12 +10,17 @@ const Header = () => {
     const authcontext = useContext(AuthContext);
     const {usuario} = authcontext;
     const [{basket}] = useStateValue();
-
+    const [search, handleSearch] = useState('');
+    const history = useHistory();
     const handleAuthentication = () =>{
       if(usuario){
 	auth.signOut();
       }
     }
+  const handleSubmit = e =>{
+      e.preventDefault();
+      history.push(`/search/${search}`);
+  }
     return (
         <nav className="header">
             {/* Logo a la izquierda -> img*/}
@@ -23,10 +28,16 @@ const Header = () => {
             <img className="header__logo" src="http://pngimg.com/uploads/amazon/amazon_PNG11.png" alt="logo" />
             </Link>
             {/* Buscador*/}
+	    <form onSubmit={handleSubmit}>
             <div className="header__search">
-            <input className="header__searchInput" type="text"/>
+            <input 
+	    className="header__searchInput"
+	    type="text" name="search"
+	    value={search}
+	    onChange={e => handleSearch(e.target.value)}/>
             <SearchIcon className="header__searchIcon" />
             </div>
+	    </form>
             {/** Buscador */}
 
             {/*------------ 3 Botones------------------*/}
@@ -55,12 +66,14 @@ const Header = () => {
                   {/**-----------3 Botones ---------------*/}
 
             {/* Carrito con el numero de items*/}
+		<div className="header__basket">
                 <Link to="/checkout" className="header__link">
                 <div className="header__carShopping">
                     <ShoppingBasketIcon />
                    <span className="header__optionTwo header__basketCount">{basket?.length}</span>
-                </div>
+		</div>
                 </Link>
+                </div>
             {/** Carrito con el numero de items*/}
         </nav>
 
