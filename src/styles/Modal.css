@@ -1,12 +1,30 @@
+    
 .Modal{
  max-width: 800px; 
   
 }
 .modal__header{
   display: flex;
-  justify-content: space-between;
+  margin-bottom: 1rem;
+  align-items: center;
+  margin-left: 150px;
+}
+.modal__title{
 }
 .modal__body{
   display: flex;
   flex-direction: column;
+  max-width:600px;
+}
+
+.modal__exit{
+  background-color:white;
+  border: none;
+  margin-left: 50px;
+  transition: 200ms;
+}
+.modal__exit:hover{
+  cursor: pointer;
+  background-color:red;
+  padding: 7px;
 }

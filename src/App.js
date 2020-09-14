@@ -6,6 +6,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
 import Checkout from './components/Checkout';
+import CreateProduct from './components/CreateProduct';
 import {StateProvider} from './context/StateProvider';
 import reducer,{initialState} from './context/StateReducer';
 import AuthState from './context/AuthState/authState';
@@ -32,6 +33,10 @@ function App() {
 	  <Header />
 	  <Search />
 	  </Route>  
+	 <Route path="/create">
+	  <Header />
+	  <CreateProduct />
+	  </Route>
 	  <Route  path="/">
           <Header />
           <Home />

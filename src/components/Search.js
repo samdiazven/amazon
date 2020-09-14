@@ -22,7 +22,7 @@ const context = useContext(AuthContext);
     })
   },[])
     return(
-	<h1> SEARCH </h1>
+	<h1> {q} </h1>
     )
 }
 

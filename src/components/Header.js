@@ -46,21 +46,21 @@ const Header = () => {
                   <Link to={usuario ? '/' : '/login'} className="header__link">
                    <div onClick={handleAuthentication} className="header__option">
                     <span className="header__optionOne">{usuario ? `Hola ${usuario.displayName}` : 'Hola Invitado'}</span>
-                    <span className="header__optionTwo">{usuario  ? 'Sign Out'  : 'Sign in'}</span>
+                    <span className="header__optionTwo">{usuario  ? 'Logout'  : 'Ingresar'}</span>
                    </div>
                   </Link> 
                 {/*2nd options*/}
                 <Link to="/" className="header__link">
                    <div className="header__option">
-                    <span className="header__optionOne">Returns</span>
-                    <span className="header__optionTwo">& orders</span>
+                    <span className="header__optionOne">Tus</span>
+                    <span className="header__optionTwo">Compras</span>
                    </div>
                   </Link>
                 {/*3rd options*/}
-           <Link to="/" className="header__link">
+           <Link to="/create" className="header__link">
                    <div className="header__option">
-                    <span className="header__optionOne">Your</span>
-                    <span className="header__optionTwo">Prime</span>
+                    <span className="header__optionOne">cargar</span>
+                    <span className="header__optionTwo">Producto</span>
                    </div>
                   </Link> </div>
                   {/**-----------3 Botones ---------------*/}

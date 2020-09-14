@@ -1,4 +1,5 @@
 export const initialState = {
+    products:[],
     basket: [],
     subtotal: 0,
     user: null,

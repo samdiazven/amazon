@@ -10,8 +10,11 @@ const customStyles ={
 	    left              	: '50%',
 	    right               : 'auto',
 	    bottom              : 'auto',
+	    marginTop		: '50px',
 	    marginRight         : '-50%',
-	    transform           : 'translate(-50%, -50%)'
+	    maxWidth		: '700px',
+	    maxHeight		: '500px',
+	    transform           : 'translate(-50%, -50%)',
 	    }
     };
 const CheckoutProduct = ({id, title, price, rating, image}) => {
@@ -68,9 +71,8 @@ const CheckoutProduct = ({id, title, price, rating, image}) => {
 		    <div className="Modal">
 		    <div className="modal__header">
 		    <h2 className="modal__title">Hello from Modal - {id}</h2>
-		    <button onClick={ProductClose} className="modal__exit">X</button>
+		    <button onClick={ProductClose} className="modal__exit">&#88;</button>
 		     </div>
-		    <hr />
 		    <div className="modal__body">
 		    <ProductInfo
 			id={id}
